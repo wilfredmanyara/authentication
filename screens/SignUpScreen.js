@@ -3,25 +3,42 @@ import { View, Text, TouchableOpacity, Image, TextInput, StyleSheet } from "reac
 import { SafeAreaView } from "react-native-safe-area-context";
 import { ArrowLeftIcon } from "react-native-heroicons/solid";
 import { useNavigation } from "@react-navigation/native";
-import { createUserWithEmailAndPassword } from "firebase/auth";
-import { auth } from "../config/firebase";
+
 
 export default function SignUpScreen() {
   const navigation = useNavigation();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
-  const handleSubmit = async () => {
+  {/*const handleSubmit = async () => {
     if (email && password) {
-      try {
-        await createUserWithEmailAndPassword(auth, email, password);
-      } catch (err) {
-        setError(err.message);
-      }
+        try {
+            const response = await fetch('https://your-backend-api.com/register', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({ email, password }),
+            });
+
+            if (response.ok) {
+                // Registration successful
+                navigation.navigate('Home');
+            } else {
+                // Handle registration errors
+                const errorData = await response.json();
+                setError(errorData.message);
+            }
+        } catch (error) {
+            // Handle network errors
+            setError('Network error occurred. Please try again.');
+        }
     } else {
-      setError("Email and password are required");
+        setError("Email and password are required");
     }
-  };
+};
+*/}
+
 
   return (
     <View style={styles.container}>
@@ -65,7 +82,7 @@ export default function SignUpScreen() {
         </View>
         <TouchableOpacity
           style={styles.signUpButton}
-          onPress={handleSubmit}
+          onPress={() => navigation.navigate('Home')}
         >
           <Text style={styles.signUpButtonText}>Sign Up</Text>
         </TouchableOpacity>

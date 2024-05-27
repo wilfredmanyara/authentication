@@ -2,8 +2,6 @@
 import React from "react";
 import { View, Text, TouchableOpacity, StyleSheet, Image } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
-import { signOut } from "firebase/auth";
-import { auth } from "../config/firebase";
 import { useNavigation } from "@react-navigation/native";
 
 // Sample user data
@@ -17,8 +15,7 @@ const userData = {
 export default function HomeScreen() {
   const navigation = useNavigation();
 
-  const handleLogout = async () => {
-    await signOut(auth);
+  const handleLogout = () => {
     // Navigate to login/signup screen after logout
     navigation.navigate("Login");
   };

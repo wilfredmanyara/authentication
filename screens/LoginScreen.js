@@ -1,25 +1,13 @@
-import { View, Text, TouchableOpacity, Image, TextInput, StyleSheet } from "react-native";
 import React, { useState } from "react";
+import { View, Text, TouchableOpacity, Image, TextInput, StyleSheet } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { ArrowLeftIcon } from "react-native-heroicons/solid";
 import { useNavigation } from "@react-navigation/native";
-import { signInWithEmailAndPassword } from "firebase/auth";
-import { auth } from "../config/firebase";
 
 export default function LoginScreen() {
   const navigation = useNavigation();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-
-  const handleSubmit = async () => {
-    if (email && password) {
-      try {
-        await signInWithEmailAndPassword(auth, email, password);
-      } catch (err) {
-        console.log("got error: ", err.message);
-      }
-    }
-  };
 
   return (
     <View style={styles.container}>
@@ -66,7 +54,7 @@ export default function LoginScreen() {
         </TouchableOpacity>
         <TouchableOpacity
           style={styles.loginButton}
-          onPress={handleSubmit}
+          onPress={() => navigation.navigate("Home")}
         >
           <Text style={styles.loginButtonText}>Login</Text>
         </TouchableOpacity>
